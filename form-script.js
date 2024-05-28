@@ -1,10 +1,8 @@
-<!-- Include this script in your form page -->
 <script>
-// Fetch geolocation data and store it in session storage
 async function fetchGeolocation() {
   const response = await fetch('https://ipinfo.io?token=00f522b5ae36c7');
   const data = await response.json();
-  sessionStorage.setItem('geoData', JSON.stringify(data));
+  localStorage.setItem('geoData', JSON.stringify(data));
 }
 
 fetchGeolocation();
@@ -30,7 +28,7 @@ document.getElementById('form_6639455').addEventListener('submit', function(even
     financingType: financingType
   };
 
-  sessionStorage.setItem('formData', JSON.stringify(formData));
+  localStorage.setItem('formData', JSON.stringify(formData));
 
   // Continue with form submission
 });
