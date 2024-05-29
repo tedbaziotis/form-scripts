@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var form = document.getElementById('form'); // Using the correct form ID
+  var form = document.getElementById('form_6639455'); // Replace with the correct form ID
 
   if (form) {
     form.addEventListener('submit', function(event) {
@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
         financingType: document.querySelector('input[name="Type of Financing"]:checked').value
       };
 
-      console.log('Form Data:', formData); // Log form data
-
       localStorage.setItem('formData', JSON.stringify(formData));
 
       // Get geolocation data
@@ -30,15 +28,11 @@ document.addEventListener('DOMContentLoaded', function() {
           country: response.country
         }));
 
-        console.log('Geo Data:', response); // Log geo data
-
         // Continue with form submission
-        event.target.submit();
+        form.submit();
       }, "json").fail(function(jqXHR, textStatus, errorThrown) {
         console.error('Geolocation error:', textStatus, errorThrown);
       });
     });
-  } else {
-    console.error('Form element with ID "form" not found.');
   }
 });
