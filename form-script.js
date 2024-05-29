@@ -28,11 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
           country: response.country
         }));
 
-        // Continue with form submission
-        form.submit();
+        form.submit(); // Continue with form submission
       }, "json").fail(function(jqXHR, textStatus, errorThrown) {
         console.error('Geolocation error:', textStatus, errorThrown);
+        form.submit(); // Continue with form submission even if geolocation fails
       });
     });
+  } else {
+    console.error('Form element with ID "form_6639455" not found.');
   }
 });
