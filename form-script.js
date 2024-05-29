@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var form = document.getElementById('form_6639455'); // Replace with the correct form ID
+  var form = document.querySelector('form[data-form-id="6639455"]'); // Ensure this selector matches your form
 
   if (form) {
     form.addEventListener('submit', function(event) {
@@ -35,6 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   } else {
-    console.error('Form element with ID "form_6639455" not found.');
+    console.error('Form element not found.');
   }
 });
