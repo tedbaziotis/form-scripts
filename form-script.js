@@ -1,4 +1,4 @@
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
   var form = document.getElementById('form_6639455');
 
   if (form) {
@@ -41,4 +41,4 @@ window.onload = function() {
   } else {
     console.error('Form element with ID form_6639455 not found.');
   }
-};
+});
