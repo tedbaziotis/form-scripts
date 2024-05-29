@@ -1,36 +1,44 @@
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('form_6639455').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
+window.onload = function() {
+  var form = document.getElementById('form_6639455');
 
-    // Capture form data
-    var formData = {
-      firstName: document.querySelector('input[name="First"]').value,
-      lastName: document.querySelector('input[name="Last"]').value,
-      email: document.querySelector('input[name="Email"]').value,
-      phone: document.querySelector('input[name="Phone Number"]').value,
-      companyName: document.querySelector('input[name="Company Name"]').value,
-      industry: document.querySelector('input[name="Industry"]').value,
-      annualRevenue: document.querySelector('input[name="Annual Revenue"]').value,
-      financingType: document.querySelector('input[name="Type of Financing"]:checked').value
-    };
+  if (form) {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
 
-    console.log('Form Data:', formData); // Log form data
+      // Capture form data
+      var formData = {
+        firstName: document.querySelector('input[name="First"]').value,
+        lastName: document.querySelector('input[name="Last"]').value,
+        email: document.querySelector('input[name="Email"]').value,
+        phone: document.querySelector('input[name="Phone Number"]').value,
+        companyName: document.querySelector('input[name="Company Name"]').value,
+        industry: document.querySelector('input[name="Industry"]').value,
+        annualRevenue: document.querySelector('input[name="Annual Revenue"]').value,
+        financingType: document.querySelector('input[name="Type of Financing"]:checked').value
+      };
 
-    localStorage.setItem('formData', JSON.stringify(formData));
+      console.log('Form Data:', formData); // Log form data
 
-    // Get geolocation data
-    $.get("https://ipinfo.io?token=00f522b5ae36c7", function(response) {
-      localStorage.setItem('geoData', JSON.stringify({
-        city: response.city,
-        region: response.region,
-        postal_code: response.postal,
-        country: response.country
-      }));
+      localStorage.setItem('formData', JSON.stringify(formData));
 
-      console.log('Geo Data:', response); // Log geo data
+      // Get geolocation data
+      $.get("https://ipinfo.io?token=00f522b5ae36c7", function(response) {
+        localStorage.setItem('geoData', JSON.stringify({
+          city: response.city,
+          region: response.region,
+          postal_code: response.postal,
+          country: response.country
+        }));
 
-      // Continue with form submission
-      event.target.submit();
-    }, "json");
-  });
-});
+        console.log('Geo Data:', response); // Log geo data
+
+        // Continue with form submission
+        event.target.submit();
+      }, "json").fail(function(jqXHR, textStatus, errorThrown) {
+        console.error('Geolocation error:', textStatus, errorThrown);
+      });
+    });
+  } else {
+    console.error('Form element with ID form_6639455 not found.');
+  }
+};
