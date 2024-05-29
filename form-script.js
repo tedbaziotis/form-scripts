@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
       financingType: document.querySelector('input[name="Type of Financing"]:checked').value
     };
 
+    console.log('Form Data:', formData); // Log form data
+
     localStorage.setItem('formData', JSON.stringify(formData));
 
     // Get geolocation data
@@ -24,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
         postal_code: response.postal,
         country: response.country
       }));
+
+      console.log('Geo Data:', response); // Log geo data
 
       // Continue with form submission
       event.target.submit();
