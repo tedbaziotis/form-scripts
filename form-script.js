@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('Script loaded and DOM fully parsed'); // Log to confirm script execution
+
   var form = document.querySelector('form[data-form-id="6639455"]'); // Ensure this selector matches your form
 
   if (form) {
