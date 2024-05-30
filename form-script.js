@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var form = document.querySelector('form[data-form-id="6639455"]'); // Ensure this selector matches your form
+  var form = document.querySelector('form#form'); // Using the correct form ID
 
   if (form) {
     console.log('Form found:', form); // Debugging log
@@ -20,9 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       console.log('Captured Form Data:', formData); // Debugging log
       localStorage.setItem('formData', JSON.stringify(formData));
-
-      // Verify that data was stored in localStorage
-      console.log('Stored Form Data:', localStorage.getItem('formData'));
+      console.log('Stored Form Data in localStorage:', localStorage.getItem('formData'));
 
       // Get geolocation data
       $.get("https://ipinfo.io?token=00f522b5ae36c7", function(response) {
@@ -33,9 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
           country: response.country
         };
         localStorage.setItem('geoData', JSON.stringify(geoData));
-
         console.log('Geo Data:', geoData); // Debugging log
-        console.log('Stored Geo Data:', localStorage.getItem('geoData'));
+        console.log('Stored Geo Data in localStorage:', localStorage.getItem('geoData'));
 
         form.submit(); // Continue with form submission
       }, "json").fail(function(jqXHR, textStatus, errorThrown) {
@@ -44,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   } else {
-    console.error('Form element with data-form-id "6639455" not found.');
+    console.error('Form element with ID "form" not found.');
   }
 });
-
