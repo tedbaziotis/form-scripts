@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('Script loaded and DOM fully parsed'); // Log to confirm script execution
+  console.log('Script loaded and DOM fully parsed');
 
   var form = document.querySelector('form[data-form-id="6639455"]'); // Ensure this selector matches your form
 
   if (form) {
-    console.log('Form found:', form); // Debugging log
+    console.log('Form found:', form);
     form.addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent the default form submission
 
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         financingType: document.querySelector('input[name="Type of Financing"]:checked').value
       };
 
-      console.log('Captured Form Data:', formData); // Debugging log
+      console.log('Captured Form Data:', formData);
       localStorage.setItem('formData', JSON.stringify(formData));
       console.log('Stored Form Data in localStorage:', localStorage.getItem('formData'));
 
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
           country: response.country
         };
         localStorage.setItem('geoData', JSON.stringify(geoData));
-        console.log('Geo Data:', geoData); // Debugging log
+        console.log('Geo Data:', geoData);
         console.log('Stored Geo Data in localStorage:', localStorage.getItem('geoData'));
 
         form.submit(); // Continue with form submission
