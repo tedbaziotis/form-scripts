@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var form = document.querySelector('form[data-form-id="6639455"]'); // Ensure this selector matches your form
+  var form = document.querySelector('form[data-form-id="6639455"]'); // Using the correct data-form-id attribute
 
   if (form) {
+    console.log('Form found:', form); // Debugging log
     form.addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent the default form submission
 
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         financingType: document.querySelector('input[name="Type of Financing"]:checked').value
       };
 
+      console.log('Form Data:', formData); // Debugging log
       localStorage.setItem('formData', JSON.stringify(formData));
 
       // Get geolocation data
@@ -28,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
           country: response.country
         }));
 
+        console.log('Geo Data:', response); // Debugging log
         form.submit(); // Continue with form submission
       }, "json").fail(function(jqXHR, textStatus, errorThrown) {
         console.error('Geolocation error:', textStatus, errorThrown);
@@ -35,6 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   } else {
-    console.error('Form element not found.');
+    console.error('Form element with data-form-id "6639455" not found.');
   }
 });
