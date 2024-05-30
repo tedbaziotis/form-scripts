@@ -1,3 +1,6 @@
+// Your GitHub-hosted JavaScript file content should be wrapped with <script> tags
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Script loaded and DOM fully parsed');
 
@@ -46,3 +49,4 @@ document.addEventListener('DOMContentLoaded', function() {
     console.error('Form element with data-form-id "6639455" not found.');
   }
 });
+</script>
