@@ -1,12 +1,4 @@
-<script>
-  // Check if jQuery is already included
-  if (typeof jQuery === 'undefined') {
-    var script = document.createElement('script');
-    script.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
-    document.head.appendChild(script);
-  }
-</script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     console.log('Script loaded and DOM fully parsed');
@@ -45,6 +37,14 @@
           localStorage.setItem('geoData', JSON.stringify(geoData));
           console.log('Geo Data:', geoData);
           console.log('Stored Geo Data in localStorage:', localStorage.getItem('geoData'));
+
+          // Push data to data layer
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            'event': 'form_submission',
+            'formData': formData,
+            'geoData': geoData
+          });
 
           form.submit(); // Continue with form submission
         }, "json").fail(function(jqXHR, textStatus, errorThrown) {
