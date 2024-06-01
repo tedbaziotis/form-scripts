@@ -3,7 +3,7 @@
   document.addEventListener('DOMContentLoaded', function() {
     console.log('Script loaded and DOM fully parsed');
 
-    var form = document.querySelector('form[data-form-id="6639455"]'); // Ensure this selector matches your form
+    var form = document.querySelector('form[data-form-id="6639455"]'); // Correct form selector
 
     if (form) {
       console.log('Form found:', form);
@@ -53,7 +53,8 @@
         });
       });
     } else {
-      console.error('Form element with data-form-id "6639455" not found.');
+      console.error('Form element not found.');
     }
   });
 </script>
+
