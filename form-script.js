@@ -24,7 +24,7 @@
 
         console.log('Captured Form Data:', formData);
 
-        // Store form data locally
+        // Store form data in localStorage for retrieval on the thank-you page
         localStorage.setItem('formData', JSON.stringify(formData));
         console.log('Stored Form Data in localStorage:', localStorage.getItem('formData'));
 
@@ -61,4 +61,3 @@
     }
   });
 </script>
-
