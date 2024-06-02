@@ -47,8 +47,6 @@
             'geoData': geoData
           });
 
-          console.log('Data pushed to data layer:', window.dataLayer);
-
           form.submit(); // Continue with form submission
         }, "json").fail(function(jqXHR, textStatus, errorThrown) {
           console.error('Geolocation error:', textStatus, errorThrown);
