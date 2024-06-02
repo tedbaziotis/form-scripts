@@ -23,7 +23,24 @@
         };
 
         console.log('Captured Form Data:', formData);
-        localStorage.setItem('formData', JSON.stringify(formData));
+
+        // Hash data for privacy before storing locally and pushing to data layer
+        function hashData(data) {
+          return CryptoJS.SHA256(data).toString(CryptoJS.enc.Hex);
+        }
+
+        var hashedData = {
+          firstName: hashData(formData.firstName),
+          lastName: hashData(formData.lastName),
+          email: hashData(formData.email),
+          phone: hashData(formData.phone),
+          companyName: hashData(formData.companyName),
+          industry: hashData(formData.industry),
+          annualRevenue: hashData(formData.annualRevenue),
+          financingType: hashData(formData.financingType)
+        };
+
+        localStorage.setItem('formData', JSON.stringify(hashedData));
         console.log('Stored Form Data in localStorage:', localStorage.getItem('formData'));
 
         // Get geolocation data
@@ -41,8 +58,8 @@
           // Push data to data layer
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({
-            'event': 'form_submission',
-            'formData': formData,
+            'event': 'generate_lead',
+            'formData': hashedData,
             'geoData': geoData
           });
 
@@ -53,6 +70,10 @@
         });
       });
     } else {
+      console.error('Form element not found.');
+    }
+  });
+</script>
       console.error('Form element not found.');
     }
   });
