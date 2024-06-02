@@ -24,23 +24,7 @@
 
         console.log('Captured Form Data:', formData);
 
-        // Hash data for privacy before storing locally and pushing to data layer
-        function hashData(data) {
-          return CryptoJS.SHA256(data).toString(CryptoJS.enc.Hex);
-        }
-
-        var hashedData = {
-          firstName: hashData(formData.firstName),
-          lastName: hashData(formData.lastName),
-          email: hashData(formData.email),
-          phone: hashData(formData.phone),
-          companyName: hashData(formData.companyName),
-          industry: hashData(formData.industry),
-          annualRevenue: hashData(formData.annualRevenue),
-          financingType: hashData(formData.financingType)
-        };
-
-        localStorage.setItem('formData', JSON.stringify(hashedData));
+        localStorage.setItem('formData', JSON.stringify(formData));
         console.log('Stored Form Data in localStorage:', localStorage.getItem('formData'));
 
         // Get geolocation data
@@ -59,9 +43,11 @@
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({
             'event': 'generate_lead',
-            'formData': hashedData,
+            'formData': formData,
             'geoData': geoData
           });
+
+          console.log('Data pushed to data layer:', window.dataLayer);
 
           form.submit(); // Continue with form submission
         }, "json").fail(function(jqXHR, textStatus, errorThrown) {
@@ -74,8 +60,3 @@
     }
   });
 </script>
-      console.error('Form element not found.');
-    }
-  });
-</script>
-
