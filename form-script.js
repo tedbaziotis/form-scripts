@@ -1,63 +1,55 @@
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log('Script loaded and DOM fully parsed');
+console.log('Script loaded');
 
-    var form = document.querySelector('form[data-form-id="6639455"]'); // Correct form selector
+// Function to capture form data
+function captureFormData() {
+    try {
+        let formData = {};
+        // Assuming you have fields with ids like 'name', 'email', etc.
+        formData.name = document.getElementById('name').value;
+        formData.email = document.getElementById('email').value;
+        formData.phone = document.getElementById('phone').value;
+        formData.industry = document.getElementById('industry').value;
+        formData.annualRevenue = document.getElementById('annualRevenue').value;
+        formData.financingType = document.getElementById('financingType').value;
+        formData.companyName = document.getElementById('companyName').value;
 
-    if (form) {
-      console.log('Form found:', form);
-      form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+        console.log('Form Data:', formData);
 
-        // Capture form data
-        var formData = {
-          firstName: document.querySelector('input[name="First"]').value,
-          lastName: document.querySelector('input[name="Last"]').value,
-          email: document.querySelector('input[name="Email"]').value,
-          phone: document.querySelector('input[name="Phone Number"]').value,
-          companyName: document.querySelector('input[name="Company Name"]').value,
-          industry: document.querySelector('input[name="Industry"]').value,
-          annualRevenue: document.querySelector('input[name="Annual Revenue"]').value,
-          financingType: document.querySelector('input[name="Type of Financing"]:checked').value
-        };
-
-        console.log('Captured Form Data:', formData);
-
-        // Store form data in localStorage for retrieval on the thank-you page
+        // Storing data in localStorage
         localStorage.setItem('formData', JSON.stringify(formData));
-        console.log('Stored Form Data in localStorage:', localStorage.getItem('formData'));
-
-        // Get geolocation data
-        $.get("https://ipinfo.io?token=00f522b5ae36c7", function(response) {
-          var geoData = {
-            city: response.city,
-            region: response.region,
-            postal_code: response.postal,
-            country: response.country
-          };
-          localStorage.setItem('geoData', JSON.stringify(geoData));
-          console.log('Geo Data:', geoData);
-          console.log('Stored Geo Data in localStorage:', localStorage.getItem('geoData'));
-
-          // Push data to data layer
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            'event': 'generate_lead',
-            'formData': formData,
-            'geoData': geoData
-          });
-
-          console.log('Data pushed to data layer:', window.dataLayer);
-
-          form.submit(); // Continue with form submission
-        }, "json").fail(function(jqXHR, textStatus, errorThrown) {
-          console.error('Geolocation error:', textStatus, errorThrown);
-          form.submit(); // Continue with form submission even if geolocation fails
-        });
-      });
-    } else {
-      console.error('Form element not found.');
+        console.log('Form data saved to localStorage');
+    } catch (error) {
+        console.error('Error capturing form data:', error);
     }
-  });
-</script>
+}
+
+// Function to push data to the data layer
+function pushToDataLayer() {
+    try {
+        let formData = JSON.parse(localStorage.getItem('formData'));
+        if (formData) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'formSubmission',
+                'formData': formData
+            });
+            console.log('Data pushed to dataLayer:', formData);
+        } else {
+            console.warn('No form data found in localStorage');
+        }
+    } catch (error) {
+        console.error('Error pushing data to dataLayer:', error);
+    }
+}
+
+// Assuming you call captureFormData on form submission
+document.getElementById('yourForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    captureFormData();
+    pushToDataLayer();
+    // Optionally, redirect to thank you page
+    // window.location.href = 'thank-you-page-url';
+});
+
+console.log('Script end');
+
