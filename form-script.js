@@ -1,4 +1,5 @@
-console.log('Custom script loaded from GitHub'); // Verification log
+<script>
+    console.log('Custom script loaded from GitHub'); // Verification log
 
 function captureFormData() {
     try {
@@ -36,3 +37,4 @@ function captureFormData() {
 // Capture form data immediately
 captureFormData();
 console.log('Custom script execution finished'); // Verification log
+</script>
