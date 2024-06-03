@@ -20,6 +20,6 @@ function captureFormData() {
     }
 }
 
-// Capture form data immediately
+// Capture form data immediately on page load or form submission
 captureFormData();
 </script>
