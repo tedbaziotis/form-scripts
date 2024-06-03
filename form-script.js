@@ -1,16 +1,14 @@
 <script>
-    console.log('Script loaded for form submission page');
-
 function captureFormData() {
     try {
         let formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            industry: document.getElementById('industry').value,
-            annualRevenue: document.getElementById('annualRevenue').value,
-            financingType: document.getElementById('financingType').value,
-            companyName: document.getElementById('companyName').value
+            firstName: document.querySelector('[data-index="1"]').value, // First Name using data attribute
+            lastName: document.querySelector('[data-index="2"]').value, // Last Name using data attribute
+            email: document.getElementById('text-00000014').value, // Email
+            phone: document.getElementById('text-00000016').value, // Phone Number
+            companyName: document.getElementById('text-00000026').value, // Company Name
+            industry: document.getElementById('text-00000022').value, // Industry
+            financingType: document.querySelector('input[name="c_0000000f"]:checked').value // Type of Financing
         };
 
         console.log('Form Data:', formData);
@@ -22,12 +20,6 @@ function captureFormData() {
     }
 }
 
-document.getElementById('yourForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    captureFormData();
-    // Redirect to thank you page
-    window.location.href = 'thank-you-page-url'; // Replace with your thank you page URL
-});
-
-console.log('Script end for form submission page');
+// Capture form data immediately
+captureFormData();
 <script>
