@@ -1,5 +1,5 @@
 <script>
-    console.log('Custom script loaded from GitHub'); // Verification log
+console.log('Custom script loaded from GitHub'); // Verification log
 
 function captureFormData() {
     try {
