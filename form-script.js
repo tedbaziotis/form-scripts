@@ -22,4 +22,4 @@ function captureFormData() {
 
 // Capture form data immediately
 captureFormData();
-<script>
+</script>
