@@ -1,4 +1,6 @@
 <script>
+console.log('123FormBuilder custom script is running');
+
 (function() {
     console.log('Custom script loaded from GitHub'); // Verification log
 
